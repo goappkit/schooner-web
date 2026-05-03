@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSH Config Editing — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>SSH Config Editing</h1>
+      <p class="lead">Schooner treats <code>~/.ssh/config</code> as the source of truth. It reads and writes the file with a lossless AST parser — your comments, blank lines, indentation, and <code>Match</code> blocks survive every operation.</p>
+
+      <h2>The lossless parser</h2>
+      <p>Most SSH config tools parse the file into a data structure and write it back from scratch — destroying your formatting in the process. Schooner uses an AST (Abstract Syntax Tree) approach:</p>
+      <ol>
+        <li>Parse the file into a tree that represents every token, comment, and blank line.</li>
+        <li>Apply the requested mutation (add, edit, or delete a <code>Host</code> block) to the tree.</li>
+        <li>Serialise the tree back to text — the unchanged parts are written byte-for-byte identically.</li>
+      </ol>
+      <p>This means a file that looks like this before a Schooner edit:</p>
+      <pre><code># Work servers
+Host bastion
+    HostName 10.0.0.1
+    User admin
+    # Main entry point for the cluster
+    IdentityFile ~/.ssh/work_key</code></pre>
+      <p>…will look <em>exactly</em> like that after Schooner adds a new host below it (minus the new <code>Host</code> block).</p>
+
+      <h2>Supported directives</h2>
+      <p>Schooner reads and writes all common SSH config directives including <code>ProxyJump</code>, <code>ProxyCommand</code>, <code>IdentityFile</code>, <code>LocalForward</code>, <code>RemoteForward</code>, <code>Match</code> blocks, and <code>Include</code> directives.</p>
+
+      <div class="callout callout--warn">
+        <p><strong>Include files:</strong> Schooner reads included files for display purposes but currently only writes to the main <code>~/.ssh/config</code>. New hosts are always added to the top-level file.</p>
+      </div>
+
+      <h2>External change detection</h2>
+      <p>Schooner watches <code>~/.ssh/config</code> for changes made by external tools (vim, nano, another app). If it detects a modification while the app is running, it will:</p>
+      <ol>
+        <li>Show a notification or banner: "Your SSH config was modified externally."</li>
+        <li>Open a merge dialog showing the external changes alongside Schooner's in-memory view.</li>
+        <li>Let you choose: <em>Accept external changes</em>, <em>Keep Schooner's version</em>, or <em>Review diff</em>.</li>
+      </ol>
+      <p>You will never lose a change silently.</p>
+
+      <h2>What Schooner does not touch</h2>
+      <ul>
+        <li>Your <code>~/.ssh/known_hosts</code> file (except to read it for fingerprint verification)</li>
+        <li>Any file outside <code>~/.ssh/</code></li>
+        <li>Schooner-specific metadata (nicknames, tags, notes) — that lives in <code>schooner.sqlite</code>, never in the SSH config</li>
+      </ul>
+
+      <div class="docs-nav-footer">
+        <a href="tui.html">← TUI &amp; CLI</a>
+        <a href="backup.html">Backup &amp; Restore →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

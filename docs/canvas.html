@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProxyJump Canvas — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>ProxyJump Canvas</h1>
+      <p class="lead">A drag-and-drop topology view for your SSH fleet. Draw a line between two hosts and Schooner writes the <code>ProxyJump</code> directive into <code>~/.ssh/config</code> automatically.</p>
+
+      <h2>Opening the canvas</h2>
+      <p>Click the ⛵ menubar icon → <strong>Open Canvas</strong>, or use the toolbar in the main host list window. Every host in your database appears as a card.</p>
+
+      <h2>Auto-layout</h2>
+      <p>When you first open the canvas (or click <strong>Re-layout</strong>), Schooner runs a force-directed layout algorithm. Hosts that share a ProxyJump relationship are pulled together by a spring force; unrelated hosts repel each other. The result: jump-bastion clusters emerge naturally.</p>
+
+      <h2>Pinning nodes</h2>
+      <p>Drag any node to move it. Once moved, the node is <strong>pinned</strong> — a small 📌 indicator appears in its top-right corner. Pinned nodes are never touched by the auto-layout algorithm again.</p>
+      <p>Click the 📌 icon to unpin a node and allow the layout to reposition it. Click <strong>Re-layout</strong> in the toolbar to unpin all nodes and run a fresh layout.</p>
+
+      <h2>Creating a ProxyJump relationship</h2>
+      <ol>
+        <li>Hover over the source host node until the connection handle appears on its edge.</li>
+        <li>Drag from the handle to the target (bastion/jump) host.</li>
+        <li>Release. Schooner adds <code>ProxyJump &lt;bastion-alias&gt;</code> to the source host's SSH config entry.</li>
+      </ol>
+      <p>Multi-hop chains are supported: A → B → C produces <code>ProxyJump B,C</code> in the SSH config.</p>
+
+      <div class="callout">
+        <p><strong>Tip:</strong> ProxyJump edges are derived directly from <code>~/.ssh/config</code>. If you edit the config file manually, the canvas updates automatically the next time you open it.</p>
+      </div>
+
+      <h2>Deleting edges and nodes</h2>
+      <p>There are three distinct delete actions — each with a clear, limited scope:</p>
+      <ul>
+        <li><strong>Delete a ProxyJump edge</strong> — select the edge (click the line) and press <kbd>Delete</kbd>, or hover the line and click the ×. This only removes the <code>ProxyJump</code> directive; the host itself is untouched.</li>
+        <li><strong>Remove from canvas</strong> — right-click a node → <em>Remove from canvas</em>. The host remains in your SSH config and TUI picker; it just won't be shown on the canvas.</li>
+        <li><strong>Delete host permanently</strong> — right-click → <em>Delete host…</em>, then confirm. This removes the <code>Host</code> block from <code>~/.ssh/config</code> and all Schooner metadata.</li>
+      </ul>
+
+      <h2>Node colours</h2>
+      <p>Node colour is determined automatically by tag. Hosts sharing the same tag get the same pastel colour, giving you a second visual dimension alongside topology. Hosts with no tag are shown in neutral grey.</p>
+      <p>Hosts with danger tags (<code>prod</code>, <code>production</code> by default) display a red border regardless of their tag colour.</p>
+
+      <h2>Canvas navigation</h2>
+      <ul>
+        <li><strong>Zoom:</strong> Pinch on trackpad · <kbd>⌘+</kbd> / <kbd>⌘−</kbd> · <kbd>⌘0</kbd> to reset</li>
+        <li><strong>Pan:</strong> Two-finger drag on trackpad · Hold <kbd>Space</kbd> and drag with mouse</li>
+      </ul>
+
+      <div class="docs-nav-footer">
+        <a href="connect.html">← Connecting to Hosts</a>
+        <a href="transfer.html">File Transfer →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

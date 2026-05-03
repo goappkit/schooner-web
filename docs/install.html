@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Installation</h1>
+      <p class="lead">Schooner is distributed as a standard macOS app bundle. No installer, no system password required — drag and you're done.</p>
+
+      <h2>System Requirements</h2>
+      <ul>
+        <li>macOS 14 Sonoma or later</li>
+        <li>Apple Silicon (M1 or later) or Intel Mac</li>
+        <li>~30 MB disk space</li>
+      </ul>
+
+      <h2>Download</h2>
+      <p>Download the latest <code>.dmg</code> from the <a href="../#download">releases page</a>. Open the DMG, drag <strong>Schooner.app</strong> to your <strong>Applications</strong> folder.</p>
+
+      <div class="callout">
+        <p><strong>Gatekeeper note:</strong> Schooner is notarized by Apple. If macOS still prompts "cannot verify the developer", right-click the app and choose <em>Open</em> the first time.</p>
+      </div>
+
+      <h2>First Launch</h2>
+      <p>Schooner is a menubar app — it does not appear in the Dock. After launching, look for the ⛵ icon in your menu bar (top-right area of your screen).</p>
+      <p>On first launch Schooner will:</p>
+      <ol>
+        <li>Read your <code>~/.ssh/config</code> and populate the host list automatically.</li>
+        <li>Offer to install the <code>sc</code> CLI tool at <code>/usr/local/bin/sc</code> (optional but recommended).</li>
+        <li>Ask for notification permission (optional — can be turned off in Settings).</li>
+      </ol>
+
+      <h2>Uninstalling</h2>
+      <p>Quit Schooner (right-click the menubar icon → Quit), then drag <code>Schooner.app</code> to the Trash. User data lives at:</p>
+      <pre><code>~/Library/Application Support/Schooner/schooner.sqlite</code></pre>
+      <p>Delete that folder to remove all data. Schooner never writes anywhere else on your system.</p>
+
+      <h2>Updating</h2>
+      <p>Download the new DMG from the releases page and repeat the drag-to-Applications step. Your data is never touched during updates.</p>
+
+      <div class="docs-nav-footer">
+        <a href="index.html">← Overview</a>
+        <a href="quickstart.html">Quick Start →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

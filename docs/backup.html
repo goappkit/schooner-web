@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backup &amp; Restore — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Backup &amp; Restore</h1>
+      <p class="lead">Every write to <code>~/.ssh/config</code> is preceded by an automatic snapshot. You can browse the full history and roll back to any previous version with one click.</p>
+
+      <h2>How it works</h2>
+      <p>Before Schooner modifies <code>~/.ssh/config</code>, it saves a timestamped copy of the current file content into <code>schooner.sqlite</code> as a backup entry. The entire snapshot is stored in the database — nothing is written to additional files on disk.</p>
+      <p>By default, the last <strong>10 snapshots</strong> are retained. Older entries are pruned automatically. You can change the retention limit in <strong>Settings → General → Backup retention</strong>.</p>
+
+      <h2>Viewing backup history</h2>
+      <p>Open <strong>Settings → Backup History</strong> (or click the ⛵ menubar icon → <strong>Backup History…</strong>). The list shows every snapshot with its timestamp and a brief description of the operation that triggered it (e.g. "Added host web-01", "Deleted host old-bastion").</p>
+
+      <h2>Restoring a snapshot</h2>
+      <p>Click any entry in the backup list → <strong>Restore this version</strong>. A diff is shown first so you can see exactly what will change. Confirm, and Schooner:</p>
+      <ol>
+        <li>Creates a new snapshot of the current (pre-restore) state.</li>
+        <li>Writes the selected snapshot content back to <code>~/.ssh/config</code>.</li>
+        <li>Reloads the host list.</li>
+      </ol>
+      <p>The restore itself is also snapshotted, so you can undo a restore if needed.</p>
+
+      <h2>Manual backup</h2>
+      <p>To take a manual snapshot at any time (e.g. before a risky batch edit), click <strong>Backup Now</strong> in the Backup History window.</p>
+
+      <div class="callout">
+        <p><strong>External backup:</strong> Schooner's database lives at <code>~/Library/Application Support/Schooner/schooner.sqlite</code>. If you use iCloud Drive, Syncthing, or another sync tool, pointing it at that file will also sync your backup history across machines.</p>
+      </div>
+
+      <div class="docs-nav-footer">
+        <a href="ssh-config.html">← SSH Config Editing</a>
+        <a href="trust.html">Trust Manager →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

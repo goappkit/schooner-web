@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Settings</h1>
+      <p class="lead">All Schooner preferences in one place. Open via ⛵ menubar → <strong>Settings…</strong> or <kbd>⌘,</kbd>.</p>
+
+      <h2>General</h2>
+
+      <h3>Terminal</h3>
+      <p>The terminal application that Schooner opens SSH sessions in. Ghostty is selected automatically if installed. Options: Ghostty, Terminal.app, iTerm2, Alacritty, WezTerm, Warp.</p>
+
+      <h3>Open in</h3>
+      <p>Whether new SSH sessions open in a <em>New window</em> or a <em>New tab</em> in the current terminal window.</p>
+
+      <h3>Global shortcut</h3>
+      <p>The keyboard shortcut that opens the Schooner popover from anywhere. Default: <kbd>⌘ Shift S</kbd>. Click the field and press your preferred shortcut to change it.</p>
+
+      <h3>Show notification on launch</h3>
+      <p>Shows a macOS notification when Schooner starts, confirming it's running in the menu bar. Useful if you auto-launch Schooner at login and want confirmation it's active. Can be turned off permanently here.</p>
+
+      <h3>Backup retention</h3>
+      <p>How many <code>~/.ssh/config</code> snapshots to keep. Default: 10. Range: 1–100.</p>
+
+      <h3>Command Line Tool</h3>
+      <p>Install or reinstall the <code>sc</code> CLI at <code>/usr/local/bin/sc</code>. This creates a symlink pointing to the binary bundled inside Schooner.app.</p>
+
+      <h2>Safety</h2>
+
+      <h3>Danger tags</h3>
+      <p>A comma-separated list of tags that trigger a confirmation prompt before connecting. Default: <code>prod, production</code>. Hosts with these tags also show a red border on the ProxyJump canvas.</p>
+
+      <h2>Transfer</h2>
+
+      <h3>Server-to-server mode</h3>
+      <p>Global preference for how server-to-server transfers are routed:</p>
+      <ul>
+        <li><strong>Ask each time</strong> (default) — a dialog appears before each server-to-server transfer</li>
+        <li><strong>Always direct</strong> — route A→B without prompting</li>
+        <li><strong>Always via local</strong> — route through your Mac without prompting</li>
+      </ul>
+
+      <h2>About</h2>
+      <p>Shows the current app version, build number, architecture, and macOS version. Useful when reporting bugs.</p>
+
+      <div class="docs-nav-footer">
+        <a href="trust.html">← Trust Manager</a>
+        <a href="changelog.html">Changelog →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

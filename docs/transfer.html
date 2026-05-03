@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Transfer — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>File Transfer</h1>
+      <p class="lead">A dual-pane SFTP browser for local↔remote transfers — and a unique direct server-to-server mode that routes traffic at datacenter speed, bypassing your laptop entirely.</p>
+
+      <h2>Opening the Transfer window</h2>
+      <p>Click the ⛵ menubar icon → <strong>Transfer Files…</strong>. The window shows two panels. Use the host selector at the top of each panel to choose <em>Local</em> or any remote host.</p>
+
+      <h2>Browsing files</h2>
+      <p>Navigate by double-clicking folders. Right-click for context menu options: <em>New Folder…</em>, <em>Rename</em>, <em>Delete</em>, <em>Get Info</em>. Both panels support independent navigation.</p>
+
+      <h2>Transferring files and folders</h2>
+      <p>Select one or more items in either panel, then drag them to the other panel — or click the <strong>→</strong> / <strong>←</strong> arrow buttons in the toolbar.</p>
+      <p>Folder transfers are fully recursive. Progress is shown per-file within the folder (not as a single opaque progress bar for the whole folder).</p>
+
+      <h3>Conflict resolution</h3>
+      <p>If a destination file or folder already exists, Schooner presents a dialog:</p>
+      <ul>
+        <li><strong>Replace</strong> — overwrite the existing item</li>
+        <li><strong>Keep Both</strong> — rename the incoming file (e.g. <em>report 2.pdf</em>)</li>
+        <li><strong>Skip</strong> — skip this item and continue the rest of the transfer</li>
+        <li><strong>Cancel</strong> — abort the entire transfer</li>
+      </ul>
+
+      <h2>Resume interrupted transfers</h2>
+      <p>If a transfer is interrupted (network drop, app quit), restart it from the same source and destination. Schooner detects the partial file and resumes from where it left off, verifying the already-transferred prefix via SHA-256 before continuing.</p>
+
+      <h2>Server-to-server direct transfer (Pro)</h2>
+      <p>Set both panels to remote hosts and initiate a transfer. Schooner can route the data <strong>directly from server A to server B</strong>, never touching your Mac. This uses datacenter bandwidth instead of your home connection — typically 5–50× faster.</p>
+
+      <h3>Trust setup</h3>
+      <p>The first time you transfer between a specific pair of servers, Schooner asks:</p>
+      <ul>
+        <li><strong>This transfer only</strong> — a temporary keypair is created, scoped to SFTP commands and the source IP, and destroyed after the transfer completes.</li>
+        <li><strong>Permanent (recommended)</strong> — a persistent ed25519 key is installed in server B's <code>authorized_keys</code> with a clearly labelled comment: <code>Schooner:serverA→serverB(date)</code>. Future transfers between the same pair reuse this key without prompting.</li>
+      </ul>
+      <p>All trust relationships can be reviewed and revoked in the <a href="trust.html">Trust Manager</a>.</p>
+
+      <h3>Transfer path preference</h3>
+      <p>In Settings you can set a global preference for server-to-server transfers:</p>
+      <ul>
+        <li><strong>Ask each time</strong> (default) — prompts before each transfer</li>
+        <li><strong>Always direct</strong> — skips the prompt, always goes A→B directly</li>
+        <li><strong>Always via local</strong> — routes through your Mac (useful behind restrictive firewalls)</li>
+      </ul>
+
+      <div class="callout callout--warn">
+        <p><strong>SSH keepalive:</strong> Long directory transfers use a single SSH connection. Schooner sends TCP and application-layer keepalive packets every 15 seconds to prevent the server from dropping an idle connection mid-transfer.</p>
+      </div>
+
+      <div class="docs-nav-footer">
+        <a href="canvas.html">← ProxyJump Canvas</a>
+        <a href="keys.html">SSH Key Manager →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

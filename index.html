@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schooner — SSH Fleet Manager for macOS</title>
+  <meta name="description" content="Schooner is a native macOS SSH tool for Ghostty users. Manage your SSH fleet with a beautiful menubar app and a powerful TUI. One-time purchase, local-first." />
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ── Nav ─────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="/">
+        <img src="assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/goappkit/schooner-web/releases/download/v1.0.0/Schooner-1.0.dmg" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow">For Ghostty users who manage servers</p>
+        <h1 class="hero__title">Command your<br /><span class="gradient-text">SSH fleet</span><br />from the menu bar.</h1>
+        <p class="hero__sub">Schooner is a native macOS SSH manager — a lean menubar app paired with a fast TUI. Drag-and-drop ProxyJump topology, server-to-server transfers at datacenter speed, and zero cloud dependency.</p>
+        <div class="hero__cta">
+          <a href="https://github.com/goappkit/schooner-web/releases/download/v1.0.0/Schooner-1.0.dmg" class="btn btn--primary">Download for macOS</a>
+          <a href="docs/" class="btn btn--ghost">Read the docs →</a>
+        </div>
+        <p class="hero__note">Requires macOS 14 Sonoma or later · Apple Silicon &amp; Intel</p>
+      </div>
+      <div class="hero__visual">
+        <img src="assets/img/app-icon.png" alt="Schooner app icon" class="hero__icon" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Social proof strip ───────────────────────────── -->
+  <section class="strip">
+    <div class="container strip__inner">
+      <span>Native SwiftUI</span>
+      <span class="strip__dot">·</span>
+      <span>Local-first · Zero cloud</span>
+      <span class="strip__dot">·</span>
+      <span>One-time purchase</span>
+      <span class="strip__dot">·</span>
+      <span>Ghostty-first</span>
+      <span class="strip__dot">·</span>
+      <span>macOS 14+</span>
+    </div>
+  </section>
+
+  <!-- ── Features ─────────────────────────────────────── -->
+  <section class="features section" id="features">
+    <div class="container">
+      <h2 class="section__title">Everything you need. Nothing you don't.</h2>
+      <p class="section__sub">Schooner is opinionated by design — built around the workflows of developers who care deeply about their tools.</p>
+
+      <div class="features__grid">
+
+        <div class="feature-card feature-card--wide">
+          <div class="feature-card__icon">⛵</div>
+          <h3>Visual ProxyJump Canvas</h3>
+          <p>See your entire SSH topology on a drag-and-drop canvas. Connect nodes with a line to generate <code>ProxyJump</code> config automatically. Force-directed layout clusters related hosts — pin any node to lock its position.</p>
+          <a href="docs/canvas.html" class="feature-card__link">Learn more →</a>
+        </div>
+
+        <div class="feature-card feature-card--wide">
+          <div class="feature-card__icon">⚡</div>
+          <h3>Server-to-Server Transfers</h3>
+          <p>Transfer files directly between two remote servers at datacenter bandwidth — no routing through your laptop. Schooner handles trust establishment automatically and keeps an auditable record of every authorized key it creates.</p>
+          <a href="docs/transfer.html" class="feature-card__link">Learn more →</a>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🖥</div>
+          <h3>Menubar + TUI Dual Mode</h3>
+          <p>80% of daily tasks — searching hosts, connecting, checking status — live in a compact menubar popover. Drop into the full TUI picker (<code>sc</code>) when you're already in the terminal.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🔒</div>
+          <h3>Non-destructive SSH Config</h3>
+          <p>Schooner edits <code>~/.ssh/config</code> with a lossless AST parser — your comments, blank lines, and <code>Match</code> blocks survive every operation. Every write is preceded by an automatic snapshot.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📂</div>
+          <h3>SFTP File Transfer</h3>
+          <p>Browse local and remote filesystems side by side. Drag files across panels, resume interrupted transfers, and resolve conflicts with a clear dialog. Progress tracked per file, not per folder.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🔑</div>
+          <h3>SSH Key Manager</h3>
+          <p>Generate, view, and deploy SSH keys without leaving Schooner. One-click <code>ssh-copy-id</code> installs your public key on any host — password never hits disk.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🏷</div>
+          <h3>Tags, Nicknames &amp; Notes</h3>
+          <p>Annotate every host with nicknames, multi-tags, and freeform notes. Production hosts get an automatic red-border warning on the canvas and a confirmation prompt before connecting.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🔄</div>
+          <h3>External-Change Detection</h3>
+          <p>If you edit <code>~/.ssh/config</code> in vim while Schooner is running, it detects the change and opens a merge dialog — no silent overwrites, ever.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/app-icon.png" alt="Schooner" width="28" height="28" />
+        <span>Schooner</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="docs/">Documentation</a>
+        <a href="docs/changelog.html">Changelog</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+      <p class="footer__copy">© 2026 Schooner. Made with care for the Ghostty community.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Quick Start</h1>
+      <p class="lead">From zero to your first SSH connection in under two minutes.</p>
+
+      <h2>Step 1 — Launch Schooner</h2>
+      <p>Open Schooner from your Applications folder. It will appear as a ⛵ icon in your menu bar — not in the Dock. Click the icon to open the popover.</p>
+      <p>You should already see your hosts if you have an existing <code>~/.ssh/config</code>. Schooner reads it automatically on first launch.</p>
+
+      <h2>Step 2 — Connect to a Host</h2>
+      <p>Click any host in the list, or start typing in the search box at the top of the popover (it receives focus automatically). Press <strong>Enter</strong> or click <strong>Connect</strong> to open the host in Ghostty.</p>
+      <p>Schooner records the connection in its history and updates the frecency score so frequently-used hosts bubble to the top over time.</p>
+
+      <div class="callout">
+        <p><strong>Global shortcut:</strong> Press <kbd>⌘ Shift S</kbd> anywhere to bring up the Schooner popover instantly. Configurable in Settings.</p>
+      </div>
+
+      <h2>Step 3 — Add Your First Host Manually</h2>
+      <p>If a host is not in your SSH config yet, click the <strong>+</strong> button in the popover. Fill in:</p>
+      <ul>
+        <li><strong>Alias</strong> — short name used on the command line (<code>sc myserver</code>)</li>
+        <li><strong>Hostname / IP</strong> — the address to connect to</li>
+        <li><strong>Username</strong> — defaults to your current macOS username</li>
+        <li><strong>Port</strong> — defaults to 22</li>
+        <li><strong>Identity file</strong> — leave blank to use ssh-agent defaults</li>
+        <li><strong>Nickname &amp; Tags</strong> — purely for your own organisation, stored in Schooner's database</li>
+      </ul>
+      <p>Schooner writes a clean <code>Host</code> block into <code>~/.ssh/config</code> and creates a snapshot first.</p>
+
+      <h2>Step 4 — Try the TUI</h2>
+      <p>Open any terminal (Ghostty recommended) and run:</p>
+      <pre><code>sc</code></pre>
+      <p>An interactive fuzzy picker lists your hosts, sorted by frecency. Navigate with arrow keys or type to filter. Press Enter to connect.</p>
+
+      <h2>What's next?</h2>
+      <ul>
+        <li><a href="hosts.html">Organise hosts with tags and nicknames</a></li>
+        <li><a href="canvas.html">Visualise your ProxyJump topology</a></li>
+        <li><a href="transfer.html">Transfer files with the built-in SFTP browser</a></li>
+      </ul>
+
+      <div class="docs-nav-footer">
+        <a href="install.html">← Installation</a>
+        <a href="hosts.html">Host Management →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

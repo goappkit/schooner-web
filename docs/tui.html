@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TUI &amp; CLI — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>TUI &amp; CLI (<code>sc</code>)</h1>
+      <p class="lead">The <code>sc</code> command brings Schooner into your terminal workflow. Use the interactive TUI picker or pass arguments for scripting and quick connections.</p>
+
+      <h2>Installation</h2>
+      <p>On first launch, Schooner offers to install the <code>sc</code> binary at <code>/usr/local/bin/sc</code>. You can also install or reinstall it any time from <strong>Settings → General → Command Line Tool → Install</strong>.</p>
+
+      <h2>Interactive TUI picker</h2>
+      <pre><code>sc</code></pre>
+      <p>Running <code>sc</code> with no arguments opens the interactive TUI picker. Your hosts are listed sorted by frecency (most recently and frequently used first). Use the keyboard to navigate:</p>
+      <ul>
+        <li><kbd>↑</kbd> / <kbd>↓</kbd> — move selection</li>
+        <li>Type anything — live fuzzy filter across alias, nickname, hostname, tags</li>
+        <li><kbd>Enter</kbd> — connect to the selected host in the current terminal</li>
+        <li><kbd>Esc</kbd> or <kbd>Ctrl-C</kbd> — quit without connecting</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Design note:</strong> <code>sc</code> with no arguments intentionally does <em>not</em> connect directly. The picker gives you a visual confirmation step — preventing accidental connections to the wrong environment.</p>
+      </div>
+
+      <h2>Direct connection</h2>
+      <pre><code>sc &lt;alias&gt;</code></pre>
+      <p>If you know the alias, pass it directly to skip the picker and connect immediately:</p>
+      <pre><code>sc myserver</code></pre>
+
+      <h2>File transfer</h2>
+      <pre><code>sc cp &lt;src&gt; &lt;dst&gt;</code></pre>
+      <p>Transfer files between local and remote endpoints. Endpoints are specified as <code>local:/path</code> or <code>alias:/path</code>:</p>
+      <pre><code># Upload a local file to a remote server
+sc cp local:/tmp/report.pdf prod-server:/home/deploy/
+
+# Download a remote directory
+sc cp prod-server:/var/log/app local:/tmp/logs/
+
+# Server-to-server direct transfer (Pro)
+sc cp server-a:/data/backup server-b:/backups/</code></pre>
+      <p>Progress is printed to stdout as JSON-lines events. The transfer supports resume (<code>--resume</code> flag).</p>
+
+      <h2>Other subcommands</h2>
+      <pre><code>sc list          # Print all hosts as a table
+sc list --json   # Output hosts as JSON
+
+sc open          # Bring the Schooner GUI to the foreground</code></pre>
+
+      <h2>Shell completion</h2>
+      <p>Generate completion scripts for your shell:</p>
+      <pre><code># zsh
+sc completion zsh &gt; ~/.zsh/completions/_sc
+
+# bash
+sc completion bash &gt; /usr/local/etc/bash_completion.d/sc
+
+# fish
+sc completion fish &gt; ~/.config/fish/completions/sc.fish</code></pre>
+
+      <div class="docs-nav-footer">
+        <a href="keys.html">← SSH Key Manager</a>
+        <a href="ssh-config.html">SSH Config Editing →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

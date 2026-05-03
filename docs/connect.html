@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecting to Hosts — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Connecting to Hosts</h1>
+      <p class="lead">Schooner opens SSH sessions in your terminal of choice. By default it targets Ghostty — but any terminal works.</p>
+
+      <h2>From the menubar popover</h2>
+      <p>Click the ⛵ icon → type to search → click a host or press <kbd>Enter</kbd>. Schooner runs <code>ssh &lt;alias&gt;</code> in a new Ghostty window (or tab, configurable in Settings).</p>
+
+      <h2>Global keyboard shortcut</h2>
+      <p>Press <kbd>⌘ Shift S</kbd> from anywhere (even when Ghostty is in the foreground) to open the Schooner popover. The search box is focused automatically — just type and hit Enter.</p>
+      <p>The shortcut can be changed in <strong>Settings → General</strong>.</p>
+
+      <h2>Terminal preference</h2>
+      <p>Schooner supports:</p>
+      <ul>
+        <li><strong>Ghostty</strong> (default, detected automatically)</li>
+        <li>Terminal.app</li>
+        <li>iTerm2</li>
+        <li>Alacritty</li>
+        <li>WezTerm</li>
+        <li>Warp</li>
+      </ul>
+      <p>Change the terminal in <strong>Settings → General → Terminal</strong>. If Ghostty is installed it is selected automatically on first launch.</p>
+
+      <h2>New window vs. new tab</h2>
+      <p>In <strong>Settings → General</strong> you can choose whether Schooner opens SSH sessions in a new window or a new tab in the current Ghostty window. The default is <em>New window</em>.</p>
+
+      <h2>Danger-tag confirmation</h2>
+      <p>If a host has a danger tag (default: <code>prod</code>, <code>production</code>) Schooner shows a confirmation dialog before opening the terminal. This is a last-chance safeguard against connecting to the wrong environment. The list of danger tags is configurable in <strong>Settings → Safety</strong>.</p>
+
+      <h2>Frecency sorting</h2>
+      <p>Every successful connection updates the host's frecency score (a blend of frequency and recency). The popover and TUI picker both sort by frecency, so the hosts you use most are always at the top without any manual reordering.</p>
+
+      <div class="docs-nav-footer">
+        <a href="hosts.html">← Host Management</a>
+        <a href="canvas.html">ProxyJump Canvas →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

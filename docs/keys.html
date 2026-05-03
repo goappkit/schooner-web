@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSH Key Manager — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>SSH Key Manager</h1>
+      <p class="lead">Generate, view, and deploy SSH keypairs without leaving Schooner. One-click <code>ssh-copy-id</code> installs your public key on any host — and your password never hits disk.</p>
+
+      <h2>Opening Key Manager</h2>
+      <p>Click the ⛵ menubar icon → <strong>Key Manager</strong>.</p>
+
+      <h2>Viewing existing keys</h2>
+      <p>The key list shows all keypairs found in <code>~/.ssh/</code>. For each key you can see:</p>
+      <ul>
+        <li>Key type (ed25519, RSA, ECDSA)</li>
+        <li>Fingerprint</li>
+        <li>Comment (usually your email)</li>
+        <li>Whether a passphrase is set</li>
+        <li>Public key content (click to copy)</li>
+      </ul>
+
+      <h2>Generating a new keypair</h2>
+      <p>Click <strong>New Key…</strong>. Choose:</p>
+      <ul>
+        <li><strong>Type</strong> — ed25519 (recommended), RSA 4096, or ECDSA 521</li>
+        <li><strong>Comment</strong> — typically your email address</li>
+        <li><strong>Passphrase</strong> — strongly recommended. macOS Keychain integration means you'll only enter it once per login session.</li>
+        <li><strong>Filename</strong> — saved to <code>~/.ssh/</code></li>
+      </ul>
+      <p>Click <strong>Generate</strong>. The key is created immediately and appears in the list.</p>
+
+      <h2>Deploying a key (ssh-copy-id)</h2>
+      <p>Select a key in the list, then click <strong>Deploy to Host…</strong>. Choose the target host from your host list and enter the SSH password for that server when prompted. Schooner runs the equivalent of <code>ssh-copy-id</code> over an authenticated session.</p>
+      <p>The password is used only for the one-time authentication step and is discarded immediately — it is never written to disk or stored in any database.</p>
+
+      <div class="callout">
+        <p><strong>Key passphrase handling:</strong> Schooner delegates passphrase management entirely to macOS's built-in ssh-agent. You will see the standard macOS "Enter passphrase" dialog — Schooner never prompts for or stores key passphrases itself.</p>
+      </div>
+
+      <h2>Deleting a key</h2>
+      <p>Select a key and click <strong>Delete</strong>. Schooner asks for confirmation, then removes both the private and public key files from <code>~/.ssh/</code>. Make sure the key is no longer deployed to any hosts before deleting.</p>
+
+      <div class="docs-nav-footer">
+        <a href="transfer.html">← File Transfer</a>
+        <a href="tui.html">TUI &amp; CLI →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

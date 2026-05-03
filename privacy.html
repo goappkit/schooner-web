@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Schooner</title>
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="/">
+        <img src="assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="https://github.com/goappkit/schooner-web/releases/download/v1.0.0/Schooner-1.0.dmg" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="docs-layout--prose docs-content">
+      <h1>Privacy Policy</h1>
+      <p class="lead">Last updated: May 3, 2026</p>
+
+      <h2>Overview</h2>
+      <p>Schooner is a local-first application. It does not collect, transmit, or store any personal data on external servers. All data remains on your Mac.</p>
+
+      <h2>Data we do not collect</h2>
+      <ul>
+        <li>Your SSH hostnames, credentials, or keys</li>
+        <li>The contents of files you transfer</li>
+        <li>Usage analytics or telemetry</li>
+        <li>Crash reports (unless you explicitly submit one)</li>
+        <li>Your name, email address, or any account information</li>
+      </ul>
+
+      <h2>Data stored on your device</h2>
+      <p>Schooner stores the following data locally on your Mac, in locations you control:</p>
+      <ul>
+        <li><code>~/.ssh/config</code> — your SSH host definitions (standard OpenSSH file)</li>
+        <li><code>~/Library/Application Support/Schooner/schooner.sqlite</code> — nicknames, tags, notes, SSH key records, backup snapshots, and trust relationships</li>
+      </ul>
+      <p>None of this data leaves your device unless you explicitly copy or sync it yourself (e.g. via iCloud Drive or Syncthing).</p>
+
+      <h2>Network connections</h2>
+      <p>Schooner makes outbound network connections only to servers that you explicitly configure and connect to. The app itself does not contact any Schooner-operated server for any purpose.</p>
+
+      <h2>Third-party services</h2>
+      <p>Schooner does not integrate with any third-party analytics, advertising, or data-sharing services.</p>
+
+      <h2>Contact</h2>
+      <p>If you have questions about privacy, please open an issue on the project repository or contact the developer directly.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/app-icon.png" alt="Schooner" width="28" height="28" />
+        <span>Schooner</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="docs/">Documentation</a>
+        <a href="docs/changelog.html">Changelog</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+      <p class="footer__copy">© 2026 Schooner. Made with care for the Ghostty community.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

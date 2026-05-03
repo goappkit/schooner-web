@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Host Management — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Host Management</h1>
+      <p class="lead">Add, edit, tag, and organise all your SSH hosts from one place. Schooner stays in sync with <code>~/.ssh/config</code> automatically.</p>
+
+      <h2>Where host data lives</h2>
+      <p>Schooner uses two complementary stores:</p>
+      <ul>
+        <li><strong><code>~/.ssh/config</code></strong> — the source of truth for SSH connection parameters (hostname, user, port, identity file, ProxyJump, etc.). Schooner edits this file with a lossless parser — your comments and formatting are preserved.</li>
+        <li><strong><code>~/Library/Application Support/Schooner/schooner.sqlite</code></strong> — stores Schooner-specific metadata: nicknames, tags, notes, frecency scores, canvas positions, and connection history. This data never touches your SSH config.</li>
+      </ul>
+
+      <h2>Adding a host</h2>
+      <p>Click the <strong>+</strong> button in the menubar popover or open the host list window and use the toolbar button. Fill in the connection details and click <strong>Save</strong>. Schooner writes a <code>Host</code> block to <code>~/.ssh/config</code> (after creating an automatic snapshot).</p>
+
+      <h2>Editing a host</h2>
+      <p>Right-click any host → <strong>Edit…</strong>, or double-click the row. All SSH parameters and Schooner metadata are editable in one sheet.</p>
+
+      <h2>Tags</h2>
+      <p>Tags are free-form labels stored in Schooner's database (not in <code>~/.ssh/config</code>). A host can have multiple tags. Use tags to:</p>
+      <ul>
+        <li>Filter the host list quickly (type a tag name in the search box)</li>
+        <li>Colour-code nodes on the ProxyJump canvas automatically</li>
+        <li>Trigger the <strong>danger-tag confirmation</strong> prompt before connecting</li>
+      </ul>
+
+      <h3>Danger tags</h3>
+      <p>Any host tagged <code>prod</code> or <code>production</code> (configurable in Settings → Safety) will show a red border on the canvas and prompt a confirmation dialog before connecting. This prevents accidental connections to production servers.</p>
+
+      <h2>Nicknames &amp; Notes</h2>
+      <p>A <strong>nickname</strong> is a human-friendly display name (e.g. "My Home NAS") shown in the popover and TUI in addition to the alias. <strong>Notes</strong> are freeform text visible when you open the host detail view — great for documenting quirks or credentials hints.</p>
+
+      <h2>Deleting a host</h2>
+      <p>Right-click → <strong>Delete host…</strong>. You'll see a confirmation dialog. Deletion removes the <code>Host</code> block from <code>~/.ssh/config</code> (a snapshot is taken first) and removes all Schooner metadata. This is irreversible from within the app, but you can restore from a <a href="backup.html">backup snapshot</a>.</p>
+
+      <h2>Searching &amp; filtering</h2>
+      <p>The search box in the popover and the TUI picker both search across alias, nickname, hostname, user, tags, and notes. Frecency sorting ensures your most-used hosts appear first.</p>
+
+      <div class="docs-nav-footer">
+        <a href="quickstart.html">← Quick Start</a>
+        <a href="connect.html">Connecting to Hosts →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

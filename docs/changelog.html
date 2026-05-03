@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog — Schooner</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Reference</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Changelog</h1>
+      <p class="lead">All notable changes to Schooner, most recent first.</p>
+
+      <h2>v0.9 — 2026-05-03</h2>
+      <h3>Fixed</h3>
+      <ul>
+        <li>Directory transfer progress now advances per-file instead of resetting to 0% at the start of each file.</li>
+        <li>SSH connection no longer hangs on long directory uploads. TCP and application-layer keepalive packets are now sent every 15 seconds to prevent servers from dropping idle connections.</li>
+      </ul>
+
+      <h2>v0.8 — 2026-05-02</h2>
+      <h3>New</h3>
+      <ul>
+        <li>Startup notification with a permanent disable option in Settings → General.</li>
+        <li>Deployment target lowered to macOS 14 Sonoma (was 26.3).</li>
+      </ul>
+
+      <h2>v0.7 — 2026-04-30</h2>
+      <h3>New</h3>
+      <ul>
+        <li>Host selector in the Transfer window replaced with a popover — search by alias, nickname, or hostname; shows host icon and user info.</li>
+        <li>Right-clicking empty space in the Transfer window file list now shows a "New Folder…" context menu item.</li>
+      </ul>
+      <h3>Fixed</h3>
+      <ul>
+        <li>Conflict resolution dialog (Replace / Keep Both / Skip / Cancel) is now shown when a destination file or folder already exists, instead of silently overwriting.</li>
+      </ul>
+
+      <h2>v0.6 — 2026-04-28</h2>
+      <h3>New</h3>
+      <ul>
+        <li>Recursive folder upload and download over SFTP.</li>
+        <li>Remote sub-directories are now created automatically during folder uploads.</li>
+      </ul>
+      <h3>Fixed</h3>
+      <ul>
+        <li>Double-slash in remote path during directory upload.</li>
+        <li>Progress total was incorrectly calculated during chunked copy.</li>
+      </ul>
+
+      <div class="docs-nav-footer">
+        <a href="settings.html">← Settings</a>
+        <span></span>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

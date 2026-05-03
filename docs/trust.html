@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trust Manager — Schooner Docs</title>
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="index.html">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Trust Manager</h1>
+      <p class="lead">A complete audit log of every SSH key Schooner has installed on your servers — with one-click revocation for any entry.</p>
+
+      <h2>What is a trust relationship?</h2>
+      <p>When you initiate a <a href="transfer.html">server-to-server transfer</a> using the <em>permanent</em> trust mode, Schooner generates an ed25519 keypair and installs the public key on the destination server's <code>authorized_keys</code> file. This "trust relationship" lets server A authenticate to server B directly on future transfers.</p>
+      <p>Every installed key is labelled with a structured comment so it's always clear who put it there:</p>
+      <pre><code>ssh-ed25519 AAAA... Schooner:server-a→server-b(2026-05-01)</code></pre>
+
+      <h2>Opening Trust Manager</h2>
+      <p>Click the ⛵ menubar icon → <strong>Trust Manager</strong>.</p>
+
+      <h2>Reading the trust list</h2>
+      <p>Each row shows:</p>
+      <ul>
+        <li><strong>Source</strong> — the server that uses this key to authenticate</li>
+        <li><strong>Destination</strong> — the server where the public key is installed</li>
+        <li><strong>Created</strong> — when the key was installed</li>
+        <li><strong>Last used</strong> — the most recent transfer that used this key</li>
+        <li><strong>Type</strong> — Permanent or Temporary (temporary keys are removed automatically after use)</li>
+        <li><strong>Status</strong> — Active or Revoked</li>
+      </ul>
+
+      <h2>Revoking a trust relationship</h2>
+      <p>Select a row and click <strong>Revoke</strong>. Schooner will:</p>
+      <ol>
+        <li>Connect to the destination server.</li>
+        <li>Remove the matching line from <code>~/.ssh/authorized_keys</code> on that server.</li>
+        <li>Mark the entry as Revoked in the local trust database.</li>
+        <li>Delete the private key from the source server (if it's a Schooner-managed key).</li>
+      </ol>
+
+      <div class="callout callout--warn">
+        <p><strong>Revocation requires access:</strong> Schooner connects to the destination server to remove the key. If the destination server is unreachable, you'll need to remove the key manually by editing <code>authorized_keys</code> on that server.</p>
+      </div>
+
+      <h2>Security model</h2>
+      <p>Schooner-generated keys are scoped as narrowly as possible:</p>
+      <ul>
+        <li><strong>Temporary keys</strong> — restricted to SFTP commands and the source server's IP address via <code>authorized_keys</code> options. Automatically cleaned up after the transfer.</li>
+        <li><strong>Permanent keys</strong> — standard public key authentication. The Trust Manager is the escape valve for removing them when no longer needed.</li>
+      </ul>
+      <p>All trust entries are stored in <code>schooner.sqlite</code> and never leave your machine.</p>
+
+      <div class="docs-nav-footer">
+        <a href="backup.html">← Backup &amp; Restore</a>
+        <a href="settings.html">Settings →</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

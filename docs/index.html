@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — Schooner</title>
+  <meta name="description" content="Schooner documentation — get started, manage hosts, transfer files, and more." />
+  <link rel="icon" type="image/png" href="../assets/img/app-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="../">
+        <img src="../assets/img/app-icon.png" alt="Schooner" width="32" height="32" />
+        <span>Schooner</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="../#why">Why Schooner</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../#download" class="btn btn--sm">Download</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout container">
+
+    <!-- Sidebar -->
+    <aside class="docs-sidebar">
+      <p class="docs-sidebar__title">Getting Started</p>
+      <ul class="docs-sidebar__nav">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="quickstart.html">Quick Start</a></li>
+      </ul>
+
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Core Features</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="hosts.html">Host Management</a></li>
+          <li><a href="connect.html">Connecting to Hosts</a></li>
+          <li><a href="canvas.html">ProxyJump Canvas</a></li>
+          <li><a href="transfer.html">File Transfer</a></li>
+          <li><a href="keys.html">SSH Key Manager</a></li>
+          <li><a href="tui.html">TUI &amp; CLI (<code>sc</code>)</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Advanced</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="ssh-config.html">SSH Config Editing</a></li>
+          <li><a href="backup.html">Backup &amp; Restore</a></li>
+          <li><a href="trust.html">Trust Manager</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-sidebar__section">
+        <p class="docs-sidebar__title">Reference</p>
+        <ul class="docs-sidebar__nav">
+          <li><a href="changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="docs-content">
+      <h1>Documentation</h1>
+      <p class="lead">Welcome to Schooner's documentation. Find everything you need to get up and running, manage your SSH fleet, and make the most of every feature.</p>
+
+      <h2>Where to start</h2>
+      <p>New to Schooner? Begin with the <a href="install.html">Installation</a> guide, then follow the <a href="quickstart.html">Quick Start</a> to connect to your first host in under two minutes.</p>
+
+      <h2>What's in the docs</h2>
+
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="install.html">Installation</a> — Download the DMG, drag to Applications, first launch.</li>
+        <li><a href="quickstart.html">Quick Start</a> — Connect to your first host and learn the basic flow.</li>
+      </ul>
+
+      <h3>Core Features</h3>
+      <ul>
+        <li><a href="hosts.html">Host Management</a> — Add, edit, tag, and organize your SSH hosts.</li>
+        <li><a href="connect.html">Connecting to Hosts</a> — One-click dial from the menubar, Ghostty integration, keyboard shortcuts.</li>
+        <li><a href="canvas.html">ProxyJump Canvas</a> — Visual topology editor for multi-hop SSH configurations.</li>
+        <li><a href="transfer.html">File Transfer</a> — SFTP local↔remote and server-to-server direct transfers.</li>
+        <li><a href="keys.html">SSH Key Manager</a> — Generate, deploy, and audit SSH keypairs.</li>
+        <li><a href="tui.html">TUI &amp; CLI</a> — Use the <code>sc</code> command in any terminal.</li>
+      </ul>
+
+      <h3>Advanced</h3>
+      <ul>
+        <li><a href="ssh-config.html">SSH Config Editing</a> — How Schooner reads and writes <code>~/.ssh/config</code> without destroying your formatting.</li>
+        <li><a href="backup.html">Backup &amp; Restore</a> — Automatic snapshots and one-click rollback.</li>
+        <li><a href="trust.html">Trust Manager</a> — Audit and revoke server-to-server trust relationships.</li>
+        <li><a href="settings.html">Settings</a> — All preferences explained.</li>
+      </ul>
+
+      <div class="docs-nav-footer">
+        <span></span>
+        <a href="install.html">Installation →</a>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
